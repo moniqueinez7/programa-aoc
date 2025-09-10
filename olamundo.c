@@ -1,1 +1,64 @@
+printf("CARTA 2\n");
 
+printf("Estado (A-H):\n");
+scanf(" %c", &estado2);
+
+printf("Codigo:\n");
+scanf("%s", codigo2);
+getchar();
+
+printf("Nome da cidade:\n");
+fgets(cidade2, 30, stdin);
+cidade2[strcspn(cidade, "\n")]= '\0';
+
+printf("Populaçao:\n");
+scanf ("%d", &populacao2);
+
+printf("Area (KM):\n");
+scanf("%f", &area2);
+
+printf("PIB:\n");
+scanf("%f", &pib2);
+
+printf("Numeros de pontos turisticos:\n");
+scanf("%d", &turistico2);
+
+densidade2 = (float) (populacao2/area2);
+printf("Densidade populacional:%f\n ", densidade2);
+getchar ();
+
+pibpercapita2= (pib2/(float)populacao2);
+printf ("PIB per capita: %f\n", pibpercapita2);
+getchar();
+
+
+//saida formatada
+
+//primeira carta
+printf("CARTA 1 \n");
+printf("estado: %c\n", estado);
+printf("Codigo: %s\n", codigo);
+printf("Nome da cidade: %s\n", cidade);
+printf("Populaçao: %d\n", populacao);
+printf("Area: %.2f km\n", area);
+printf("PIB: %.2f bilhoes de reais\n", pib);
+printf("Numeros de pontos turisticos:\n", turistico);
+printf("Densidade populacional: %.2f hab/km\n ", densidade);
+printf("PIB per capita: %.2f reais\n", pibpercapita);
+
+
+//segunda carta 
+printf("CARTA 2\n");
+printf("Estado: %c\n", estado);
+printf("Codigo: %s\n", codigo2); 
+printf("Nome da cidade: %s\n", cidade2);
+printf("Populaçao: %d\n", populacao2);
+printf("Area: %.2f km\n", area2);
+printf("PIB: %.2f bilhoes de reais\n", pib2);
+printf("Numeros de pontos de turistico: %d\n", turistico2);
+printf("Densidade populacional: %.2f hab/km\n", densidade2);
+printf("PIB per capita: %.2f reais\n", pibpercapita2);
+
+return 0;
+
+}
