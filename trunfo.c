@@ -72,7 +72,7 @@ scanf("%ld", &turistico2);
 //calculos2
 densidade2 = (float) (populacao2/area2);
 
-pibpercapita2= (pib2/(float)populacao20;
+pibpercapita2= (pib2/(float)populacao2);
 
 inverso_densidade2= (area2/populacao2);
 
