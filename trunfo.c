@@ -1,139 +1,106 @@
 #include <stdio.h>
 #include <string.h>
 
-int main (){
-//carta 1
-char estado;
-char codigo[4];
-char cidade[30];
-unsigned long int populacao;
-int turistico;
-float area, pib;
-float densidade, pibpercapita;
-float superpoder, inverso_densidade;
+int main() {
+    // carta 1
+    char estado, codigo[4], cidade[30];
+    unsigned long int populacao;
+    int turistico;
+    float area, pib, densidade, pibpercapita, superpoder, inverso_densidade;
 
-//carta 2 
-char estado2;
-char codigo2[4];
-char cidade2[30];
-unsigned long int populacao2;
-int turistico2;
-float area2, pib2;
-float densidade2, pibpercapita2;
-float superpoder2, inverso_densidade2;
+    // carta 2
+    char estado2, codigo2[4], cidade2[30];
+    unsigned long int populacao2;
+    int turistico2;
+    float area2, pib2, densidade2, pibpercapita2, superpoder2, inverso_densidade2;
 
-//entrada de dados
-printf("CARTA 1\n");
-printf("Estado (A-H):\n");
-scanf(" %c", &estado);
-printf("Codigo:\n");
-scanf("%s", codigo);
-getchar();
-printf("Nome da cidade:\n");
-fgets(cidade, 30, stdin);
-cidade[strcspn(cidade, "\n")]= '\0';
-printf("Populaçao:\n");
-scanf ("%lu", &populacao);
-printf("Area (KM):\n");
-scanf("%f", &area);
-printf("PIB:\n");
-scanf("%f", &pib);
-printf("Numeros de pontos turisticos:\n");
-scanf("%ld", &turistico);
+    // entrada carta 1
+    printf("CARTA 1\n");
+    printf("Estado (A-H): ");
+    scanf(" %c", &estado);
+    printf("Codigo: ");
+    scanf("%s", codigo);
+    getchar();
+    printf("Nome da cidade: ");
+    fgets(cidade, 30, stdin);
+    cidade[strcspn(cidade, "\n")] = '\0';
+    printf("População: ");
+    scanf("%lu", &populacao);
+    printf("Area (KM): ");
+    scanf("%f", &area);
+    printf("PIB: ");
+    scanf("%f", &pib);
+    printf("Números de pontos turísticos: ");
+    scanf("%d", &turistico);
 
-//calculos1
-densidade = (populacao/area);
+    // calculos carta 1
+    densidade = (float)populacao / area;
+    pibpercapita = pib / (float)populacao;
+    inverso_densidade = area / (float)populacao;
+    superpoder = populacao + area + pib + turistico + pibpercapita + inverso_densidade;
 
-pibpercapita= (pib/(double)populacao);
+    // entrada carta 2
+    printf("CARTA 2\n");
+    printf("Estado (A-H): ");
+    scanf(" %c", &estado2);
+    printf("Codigo: ");
+    scanf("%s", codigo2);
+    getchar();
+    printf("Nome da cidade: ");
+    fgets(cidade2, 30, stdin);
+    cidade2[strcspn(cidade2, "\n")] = '\0';
+    printf("População: ");
+    scanf("%lu", &populacao2);
+    printf("Area (KM): ");
+    scanf("%f", &area2);
+    printf("PIB: ");
+    scanf("%f", &pib2);
+    printf("Números de pontos turísticos: ");
+    scanf("%d", &turistico2);
 
-inverso_densidade= (area/populacao);
+    // calculos carta 2
+    densidade2 = (float)populacao2 / area2;
+    pibpercapita2 = pib2 / (float)populacao2;
+    inverso_densidade2 = area2 / (float)populacao2;
+    superpoder2 = populacao2 + area2 + pib2 + turistico2 + pibpercapita2 + inverso_densidade2;
 
-superpoder= (populacao+area+pib+turistico+pibpercapita+inverso_densidade);
+    // exibição carta 1
+    printf("\nCARTA 1\n");
+    printf("Estado: %c\n", estado);
+    printf("Codigo: %s\n", codigo);
+    printf("Cidade: %s\n", cidade);
+    printf("População: %lu\n", populacao);
+    printf("Área: %.2f km\n", area);
+    printf("PIB: %.2f bilhões\n", pib);
+    printf("Pontos turísticos: %d\n", turistico);
+    printf("Densidade: %.2f hab/km\n", densidade);
+    printf("Inverso da densidade: %.6f\n", inverso_densidade);
+    printf("PIB per capita: %.2f\n", pibpercapita);
+    printf("Super poder: %.2f\n", superpoder);
 
-printf("CARTA 2\n");
+    // exibição carta 2
+    printf("\nCARTA 2\n");
+    printf("Estado: %c\n", estado2);
+    printf("Codigo: %s\n", codigo2);
+    printf("Cidade: %s\n", cidade2);
+    printf("População: %lu\n", populacao2);
+    printf("Área: %.2f km\n", area2);
+    printf("PIB: %.2f bilhões\n", pib2);
+    printf("Pontos turísticos: %d\n", turistico2);
+    printf("Densidade: %.2f hab/km\n", densidade2);
+    printf("Inverso da densidade: %.6f\n", inverso_densidade2);
+    printf("PIB per capita: %.2f\n", pibpercapita2);
+    printf("Super poder: %.2f\n", superpoder2);
 
-printf("Estado (A-H):\n");
-scanf(" %c", &estado2);
-printf("Codigo:\n");
-scanf("%s", codigo2);
-getchar();
-printf("Nome da cidade:\n");
-fgets(cidade2, 30, stdin);
-cidade2[strcspn(cidade,"\n")]='\0';
-printf("Populaçao:\n");
-scanf ("%ul", &populacao2);
-printf("Area (KM):\n");
-scanf("%f", &area2);
-printf("PIB:\n");
-scanf("%f", &pib2);
-printf("Numeros de pontos turisticos:\n");
-scanf("%ld", &turistico2);
+    // comparações
+    printf("\nCOMPARAÇÕES:\n");
+    printf("População: carta1 venceu %d\n", populacao > populacao2);
+    printf("Área: carta1 venceu %d\n", area > area2);
+    printf("Turismo: carta1 venceu %d\n", turistico > turistico2);
+    printf("PIB: carta1 venceu %d\n", pib > pib2);
+    printf("Densidade: carta2 venceu %d\n", inverso_densidade < inverso_densidade2);
+    printf("PIB per capita: carta1 venceu %d\n", pibpercapita > pibpercapita2);
+    printf("Super poder: carta1 venceu %d\n", superpoder > superpoder2);
 
-//calculos2
-densidade2 = (float) (populacao2/area2);
-
-pibpercapita2= (pib2/(float)populacao2);
-
-inverso_densidade2= (area2/populacao2);
-
-superpoder2= (populacao2+area2+pib2+turistico2+pibpercapita2+inverso_densidade2);
-
-//exibiçao
-//primeira carta
-printf("CARTA 1 \n");
-printf("estado: %c\n", estado);
-printf("Codigo: %s\n", codigo);
-printf("Nome da cidade: %s\n", cidade);
-printf("Populaçao: %lu\n", populacao);
-printf("Area: %.2f km\n", area);
-printf("PIB: %.2f bilhoes de reais\n", pib);
-printf("Numeros de pontos turisticos: %ul\n", turistico);
-printf("Densidade populacional: %.2f hab/km\n ", densidade);
-printf("Inverso da Densidade: %f\n", inverso_densidade);
-printf("PIB per capita: %.2f reais\n", pibpercapita);
-printf("Super poder: %f.2\n", superpoder);
-
-//segunda carta 
-printf("CARTA 2\n");
-printf("Estado: %c\n", estado);
-printf("Codigo: %s\n", codigo2); 
-printf("Nome da cidade: %s\n", cidade2);
-printf("Populaçao: %ul\n", populacao2);
-printf("Area: %.2f km\n", area2);
-printf("PIB: %.2f bilhoes de reais\n", pib2);
-printf("Numeros de pontos de turistico: %ul\n", turistico2);
-printf("Densidade populacional: %.2f hab/km\n", densidade2);
-printf("Inverso da Densidade: %f\n", inverso_densidade2);
-printf("PIB per capita: %.2f reais\n", pibpercapita2);
-printf("Super poder: %f.2\n", superpoder2);
-
-//comparaçoes
-int resultado1= populacao>populacao2;
-int resultado2= area>area2;
-int resultado3= turistico>turistico2;
-int resultado4= pib>pib2;
-int resultado5= inverso_densidade<inverso_densidade2;
-int resultado6=pibpercapita>pibpercapita2;
-int resultado7= superpoder>superpoder2;
-
-//exibiçao
-printf(" COMPARAÇOES DE CARTAS:\n");
-printf("Populaçao: carta1 venceu %d\n", resultado1);
-printf("Area: carta1 venceu %d\n", resultado2);
-printf("Pontos turistico: carta 1 venceu %d\n", resultado3);
-printf("PIB: venceu carta 1 %d\n", resultado4);
-printf("Densidade populacional: carta 2 venceu %d\n", resultado5);
-printf("PIB per capita: carta 1 venceu %d\n", resultado6);
-printf("Suoer poder: carta1 venceu %d\n", resultado7);
-
-
-
-
-
-return 0;
-
+    return 0;
 }
-
-
-
-
