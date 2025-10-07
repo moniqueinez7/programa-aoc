@@ -23,14 +23,14 @@ int main(){
 
    //loop aninhado 
    printf("\nCAVALO\n");
-   int y=0;
-   for(int x =0; x<=1; x++)
-        printf ("baixo\n");
-      while (y<1){
+    for(int i = 0; i<1; i++){
+        for (int j=0; j<2; j++){
+            printf("baixo\n");
+        }
         printf("esquerda\n");
-        y++;
-      }    
-
+        printf("\n");
+    
+    }
 
 
 
