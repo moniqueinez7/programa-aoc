@@ -21,7 +21,15 @@ int main(){
         rainha++;
     } while (rainha<8);
 
-
+   //loop aninhado 
+   printf("\nCAVALO\n");
+   int y=0;
+   for(int x =0; x<=1; x++)
+        printf ("baixo\n");
+      while (y<1){
+        printf("esquerda\n");
+        y++;
+      }    
 
 
 
