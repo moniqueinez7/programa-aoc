@@ -1,15 +1,21 @@
 #include <stdio.h>
 
-int main(){
 
-    for(int i = 0; i<1; i++){
-        for (int j=0; j<2; j++){
-            printf("baixo\n");
-        }
-        printf("esquerda\n");
-        printf("\n");
-    
+void moverBispo(int n) {
+    if (n== 0) return;
+
+    for (int i = 0; i < n; i++) {
+        printf(" Cima e Direita\n");
     }
 
-return 0;
+    moverBispo(n - 1);
+}
+
+int main() {
+
+    printf("\nBISPO:\n");
+    moverBispo(5);
+
+
+    return 0;
 }

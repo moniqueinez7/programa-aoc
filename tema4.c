@@ -1,40 +1,59 @@
 #include <stdio.h>
 
-int main(){
-    int bispo=0, rainha=0;
+// Função recursiva para a torre
+void torreRecursiva(int n) {
+    if (n > 0) {
+        printf("Direita\n");
+        torreRecursiva(n - 1);
+    }
+}
 
-    //loop for 
-    printf ("TORRE:\n");
-    for(int torre=0; torre<5; torre++){
-        printf("Direita\n");//imprime a direçao do movimento
+// Função recursiva para o bispo
+void bispoRecursivo(int n) {
+    if (n > 0) {
+        printf("cima, Direta\n");
+        bispoRecursivo(n - 1);
     }
-    //loop while 
-    printf("\nBISPO:\n");
-    while (bispo<5){ 
-        printf("Cima, Direita\n");//imprime a direçao do movimento
-    bispo++;  
-    }
-    //loop do-while
-    printf("\nRAINHA\n");
-    do {
+}
+
+// Função recursiva para a rainha
+void rainhaRecursiva(int n) {
+    if (n > 0) {
         printf("Esquerda\n");
-        rainha++;
-    } while (rainha<8);
-
-   //loop aninhado 
-   printf("\nCAVALO\n");
-    for(int i = 0; i<1; i++){
-        for (int j=0; j<2; j++){
-            printf("baixo\n");
-        }
-        printf("esquerda\n");
-        printf("\n");
-    
+        rainhaRecursiva(n - 1);
     }
+}
 
+// Loop aninhado para o cavalo (2 para cima e 1 para a direita)
+void cavaloLoop() {
+    printf("\nCAVALO:\n");
 
+    for (int i = 0; i < 1; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("Cima\n");
+            if (j == 1) continue;
+        }
 
+        for (int k = 0; k < 2; k++) {
+            if (k == 1) {
+                printf("Direita\n");
+                break;
+            }
+        }
+    }
+}
 
+int main() {
+    printf("\nTORRE:\n");
+    torreRecursiva(5);
+
+    printf("\nBISPO:\n");
+    bispoRecursivo(5);
+
+    printf("\nRAINHA:\n");
+    rainhaRecursiva(8);
+
+    cavaloLoop();
 
     return 0;
 }
