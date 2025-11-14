@@ -1,35 +1,31 @@
 #include <stdio.h>
 
-#define N 10 // tamanho do tabuleiro
+#define N 10  // tamanho do tabuleiro
 
-// Função para exibir o tabuleiro
-void exibirTabuleiro(char tabuleiro[N][N]) {
-    printf("\n===== TABULEIRO =====\n");
+// Exibe o tabuleiro
+void exibirTabuleiro(int tab[N][N]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            printf("%c ", tabuleiro[i][j]);
+            printf("%d ", tab[i][j]);
         }
         printf("\n");
     }
 }
 
-// Função para aplicar uma habilidade no tabuleiro
-void aplicarHabilidade(char tabuleiro[N][N], int habilidade[5][5], int origemX, int origemY) {
-    int tamanho = 5;
-    int centro = tamanho / 2;
+// Aplica habilidade no tabuleiro
+void aplicarHabilidade(int tab[N][N], int hab[5][5], int ox, int oy) {
+    int centro = 2;
 
-    for (int i = 0; i < tamanho; i++) {
-        for (int j = 0; j < tamanho; j++) {
-            if (habilidade[i][j] == 1) {
-                int x = origemX + (i - centro);
-                int y = origemY + (j - centro);
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
 
-                // Condicional para não sair dos limites do tabuleiro
+            if (hab[i][j] == 1) {
+                int x = ox + (i - centro);
+                int y = oy + (j - centro);
+
+                // Não sair dos limites
                 if (x >= 0 && x < N && y >= 0 && y < N) {
-                    // Marca área afetada apenas se não for navio
-                    if (tabuleiro[x][y] == '~') {
-                        tabuleiro[x][y] = '*'; // área afetada
-                    }
+                    tab[x][y] = 1;
                 }
             }
         }
@@ -37,21 +33,8 @@ void aplicarHabilidade(char tabuleiro[N][N], int habilidade[5][5], int origemX, 
 }
 
 int main() {
-    char tabuleiro[N][N];
 
-    // Inicializa o tabuleiro com água (~)
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            tabuleiro[i][j] = '~';
-        }
-    }
-
-    // Adiciona alguns navios manualmente (representados por '#')
-    tabuleiro[4][4] = '#';
-    tabuleiro[4][5] = '#';
-    tabuleiro[5][4] = '#';
-
-    // Matrizes das habilidades (5x5)
+    // Matrizes das habilidades
     int cone[5][5] = {
         {0,0,1,0,0},
         {0,1,1,1,0},
@@ -76,29 +59,25 @@ int main() {
         {0,0,1,0,0}
     };
 
-    // Mostra tabuleiro inicial
-    printf("TABULEIRO INICIAL:\n");
-    exibirTabuleiro(tabuleiro);
+    // Tabuleiro para cada habilidade (separado)
+    int tabCone[N][N] = {0};
+    int tabCruz[N][N] = {0};
+    int tabOct[N][N]  = {0};
 
-    // Definindo pontos de origem para as habilidades (linha, coluna)
-    int xCone = 2, yCone = 2;
-    int xCruz = 6, yCruz = 6;
-    int xOct = 5, yOct = 2;
+    // Aplicando cada habilidade em tabuleiros separados
+    aplicarHabilidade(tabCone, cone, 2, 2);
+    aplicarHabilidade(tabCruz, cruz, 7, 7);
+    aplicarHabilidade(tabOct,  octaedro, 5, 2);
 
-    // Aplicando habilidades
-    printf("\nAplicando habilidade CONE em (%d,%d):\n", xCone, yCone);
-    aplicarHabilidade(tabuleiro, cone, xCone, yCone);
-    exibirTabuleiro(tabuleiro);
+    // Exibindo resultados separadamente
+    printf("\n===== SAÍDA: HABILIDADE CONE =====\n");
+    exibirTabuleiro(tabCone);
 
-    printf("\nAplicando habilidade CRUZ em (%d,%d):\n", xCruz, yCruz);
-    aplicarHabilidade(tabuleiro, cruz, xCruz, yCruz);
-    exibirTabuleiro(tabuleiro);
+    printf("\n===== SAÍDA: HABILIDADE CRUZ =====\n");
+    exibirTabuleiro(tabCruz);
 
-    printf("\nAplicando habilidade OCTAEDRO em (%d,%d):\n", xOct, yOct);
-    aplicarHabilidade(tabuleiro, octaedro, xOct, yOct);
-    exibirTabuleiro(tabuleiro);
-
-    printf("\nLegenda:\n~ = Água\n# = Navio\n* = Área afetada pela habilidade\n");
+    printf("\n===== SAÍDA: HABILIDADE OCTAEDRO =====\n");
+    exibirTabuleiro(tabOct);
 
     return 0;
 }
